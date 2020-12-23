@@ -1,0 +1,5 @@
+<resources>
+    <integer name="com_vk_sdk_AppId">7707768</integer>
+    <string name="app_name">Лента новостей</string>
+    <string name="image">avatar</string>
+</resources>
