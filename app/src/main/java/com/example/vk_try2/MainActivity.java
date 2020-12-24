@@ -2,6 +2,7 @@ package com.example.vk_try2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,16 +17,23 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
         if (savedInstanceState != null) {
             VkClient.TOKEN = savedInstanceState.getString("token");
         }
+        final Button button = findViewById(R.id.button);
+        button.setOnClickListener((e) -> login());
+    }
+
+    private void login() {
         if (!(VkClient.TOKEN != null && VkClient.TOKEN.equals(""))) {
             startNewsFeedActivity();
         } else {

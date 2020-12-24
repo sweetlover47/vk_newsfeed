@@ -16,8 +16,6 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 public class NewsFeedActivity extends AppCompatActivity {
-
-
     private RecyclerView recyclerView;
     private Parcelable mManagerState;
     PostAdapter mAdapter;
@@ -41,6 +39,7 @@ public class NewsFeedActivity extends AppCompatActivity {
             mAdapter.mProfiles = (List<Profile>) savedInstanceState.getSerializable("profiles");
         }
         ItemDataSourceFactory.mAdapter = mAdapter;
+
         requireNonNull(mPostViewModel).itemPagedList.observe(this, mAdapter::submitList);
         recyclerView.setAdapter(mAdapter);
     }
@@ -51,7 +50,6 @@ public class NewsFeedActivity extends AppCompatActivity {
         mManagerState = requireNonNull(recyclerView.getLayoutManager()).onSaveInstanceState();
     }
 
-
     @Override
     protected void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -60,5 +58,4 @@ public class NewsFeedActivity extends AppCompatActivity {
         savedInstanceState.putSerializable("groups", new ArrayList<>(mAdapter.mGroups));
         savedInstanceState.putSerializable("profiles", new ArrayList<>(mAdapter.mProfiles));
     }
-
 }
